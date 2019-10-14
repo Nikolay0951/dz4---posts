@@ -1,11 +1,5 @@
-const root1El = document.getElementById('root1');
-console.dir(root1El);
-
-const root2El = document.getElementById('root2');
-console.dir(root2El);
-
-const root3El = document.getElementById('root3');
-console.dir(root3El);                                             // ПЕРЕСМОТРЕТЬ НЕОБХОДИМОСТЬ!!!!!!!!!!!!!!!!!!!!!!!!!
+const rootEl = document.getElementById('root');
+console.dir(rootEl);
 
 const photo = {
     id: 111,
@@ -15,7 +9,6 @@ const photo = {
     dislikes: 0,
     iconUrl: null,
 };
-
 const video = {
     id: 123,
     content: 'VW Golf GTI TCR 290HP | 0-260km/h ACCELERATION & DRAGY GPS Data by AutoTopNL',
@@ -24,7 +17,6 @@ const video = {
     dislikes: 0,
     iconUrl: null,
 };
-
 const audio = {
     id: 128,
     content: 'Звук выхлопа AMG V12',
@@ -34,7 +26,7 @@ const audio = {
     iconUrl: 'https://img.mobigama.net/app/7379-music_player_audio_player/1_music_player_audio_player.png',
 };
 
-const photoEl = document.createElement('photo'); // пост с рисунком начало
+const photoEl = document.createElement('div');
 photoEl.className = 'card';
 
 const imgEl = document.createElement('img');
@@ -71,8 +63,7 @@ dislikesEl.onclick = function () {
     dislikesEl.textContent = '👎🏻  ' + photo.dislikes;
 };
 photoButtEl.appendChild(dislikesEl);
-
-root1El.appendChild(photoEl); // пост с рисунком конец
+rootEl.appendChild(photoEl);
 
 const videoBodyEl = document.createElement('div');
 videoBodyEl.className = 'card';
@@ -112,8 +103,7 @@ vdislikesEl.onclick = function () {
     vdislikesEl.textContent = '👎🏻  ' + video.dislikes;
 };
 videoButtEl.appendChild(vdislikesEl);
-
-root2El.appendChild(videoBodyEl);
+rootEl.appendChild(videoBodyEl);
 
 const audioEl = document.createElement('div');
 audioEl.className = "card";
@@ -127,12 +117,31 @@ const audioPEl = document.createElement('audio');
 audioPEl.className = 'Audio';
 audioPEl.src = audio.sourceUrl;
 audioPEl.controls = true;
-
-
 audioEl.appendChild(audioPEl);
 
 const audioContentEl = document.createElement('p');
 audioContentEl.textContent = audio.content;
 audioEl.appendChild(audioContentEl);
 
-root3El.appendChild(audioEl);
+const audioButtEl = document.createElement('div');
+audioButtEl.className = 'btn-group';
+audioEl.appendChild(audioButtEl);
+
+const alikesEl = document.createElement('button');
+alikesEl.className = 'btn btn-info';
+alikesEl.textContent = '👍🏼  ' + audio.likes;
+alikesEl.onclick = function () {
+    audio.likes = audio.likes + 1;
+    alikesEl.textContent = '👍🏼  ' + audio.likes;
+};
+audioButtEl.appendChild(alikesEl);
+
+const adislikesEl = document.createElement('button');
+adislikesEl.className = 'btn btn-dark ';
+adislikesEl.textContent = '👎🏻  ' + audio.dislikes;
+adislikesEl.onclick = function () {
+    audio.dislikes = audio.dislikes + 1;
+    adislikesEl.textContent = '👎🏻  ' + audio.dislikes;
+};
+audioButtEl.appendChild(adislikesEl);
+rootEl.appendChild(audioEl);
