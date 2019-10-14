@@ -10,22 +10,22 @@ const photo = {
 };
 
 const video = {
-    id: 111,
-    content: 'пост с видео',
-    sourceUrl: 'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',
+    id: 123,
+    content: 'VW Golf GTI TCR 290HP | 0-260km/h ACCELERATION & DRAGY GPS Data by AutoTopNL',
+    sourceUrl: 'https://www.youtube.com/embed/_Y7IvF9CIoc?rel=0',
     likes: 0,
-    dislakes: 0,
+    dislikes: 0,
 };
 
 const audio = {
-    id: 111,
+    id: 128,
     content: 'пост с аудиозаписью',
     sourceUrl: '333http://www.audi200-club.com/wp-content/uploads/2013/01/383725153.jpg',
     likes: 10,
-    dislakes: 0,
+    dislikes: 0,
 };
 
-const photoEl = document.createElement('photo');
+const photoEl = document.createElement('photo'); // пост с рисунком
 photoEl.className = 'card';
 
 const imgEl = document.createElement('img');
@@ -55,7 +55,7 @@ likesEl.onclick = function () {
 photoButtEl.appendChild(likesEl);
 
 const dislikesEl = document.createElement('button');
-dislikesEl.className = 'btn btn-dark';
+dislikesEl.className = 'btn btn-dark ';
 dislikesEl.textContent = '👎🏻  ' + photo.dislikes;
 dislikesEl.onclick = function () {
     photo.dislikes = photo.dislikes + 1;
@@ -63,19 +63,45 @@ dislikesEl.onclick = function () {
 };
 photoButtEl.appendChild(dislikesEl);
 
-rootEl.appendChild(photoEl);
+rootEl.appendChild(photoEl); // пост с рисунком
 
+const videoBodyEl = document.createElement('div');
+videoBodyEl.className = 'card';
 
 const videoEl = document.createElement('div');
-// videoEl.src = video.sourceUrl;
 videoEl.className = 'embed-responsive embed-responsive-16by9';
 videoEl.controls = true;
+videoBodyEl.appendChild(videoEl);
 
-const videoBodyEl = document.createElement('iframe');
-videoBodyEl.className = 'embed-responsive-item';
-videoBodyEl.src = video.sourceUrl;
-videoEl.appendChild(videoBodyEl);
+const videoMatEl = document.createElement('iframe');
+videoMatEl.className = 'embed-responsive-item';
+videoMatEl.src = video.sourceUrl;
+videoEl.appendChild(videoMatEl);
 
+const videoContentEl = document.createElement('p');
+videoContentEl.textContent = video.content;
+videoBodyEl.appendChild(videoContentEl);
 
+const videoButtEl = document.createElement('div');
+videoButtEl.className = 'btn-group';
+videoBodyEl.appendChild(videoButtEl);
 
-rootEl.appendChild(videoEl);
+const vlikesEl = document.createElement('button');
+vlikesEl.className = 'btn btn-info';
+vlikesEl.textContent = '👍🏼  ' + video.likes;
+vlikesEl.onclick = function () {
+    video.likes = video.likes + 1;
+    vlikesEl.textContent = '👍🏼  ' + video.likes;
+};
+videoButtEl.appendChild(vlikesEl);
+
+const vdislikesEl = document.createElement('button');
+vdislikesEl.className = 'btn btn-dark';
+vdislikesEl.textContent = '👎🏻  ' + video.dislikes;
+vdislikesEl.onclick = function () {
+    video.dislikes = video.dislikes + 1;
+    vdislikesEl.textContent = '👎🏻  ' + video.dislikes;
+};
+videoButtEl.appendChild(vdislikesEl);
+
+rootEl.appendChild(videoBodyEl);
