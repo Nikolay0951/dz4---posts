@@ -1,5 +1,11 @@
-const rootEl = document.getElementById('root');
-console.dir(rootEl);
+const root1El = document.getElementById('root1');
+console.dir(root1El);
+
+const root2El = document.getElementById('root2');
+console.dir(root2El);
+
+const root3El = document.getElementById('root3');
+console.dir(root3El);                                             // ПЕРЕСМОТРЕТЬ НЕОБХОДИМОСТЬ!!!!!!!!!!!!!!!!!!!!!!!!!
 
 const photo = {
     id: 111,
@@ -7,6 +13,7 @@ const photo = {
     sourceUrl: 'http://www.audi200-club.com/wp-content/uploads/2013/01/383725153.jpg',
     likes: 0,
     dislikes: 0,
+    iconUrl: null,
 };
 
 const video = {
@@ -15,17 +22,19 @@ const video = {
     sourceUrl: 'https://www.youtube.com/embed/_Y7IvF9CIoc?rel=0',
     likes: 0,
     dislikes: 0,
+    iconUrl: null,
 };
 
 const audio = {
     id: 128,
-    content: 'пост с аудиозаписью',
-    sourceUrl: '333http://www.audi200-club.com/wp-content/uploads/2013/01/383725153.jpg',
-    likes: 10,
+    content: 'Звук выхлопа AMG V12',
+    sourceUrl: 'https://ru.ringtones.mob.org/go/72236/http%3A%2F%2Fahandfulof.me%2Ffail%2Fzvuk-dvigatelya-mercedes-amg-v12.mp3',
+    likes: 0,
     dislikes: 0,
+    iconUrl: 'https://img.mobigama.net/app/7379-music_player_audio_player/1_music_player_audio_player.png',
 };
 
-const photoEl = document.createElement('photo'); // пост с рисунком
+const photoEl = document.createElement('photo'); // пост с рисунком начало
 photoEl.className = 'card';
 
 const imgEl = document.createElement('img');
@@ -63,7 +72,7 @@ dislikesEl.onclick = function () {
 };
 photoButtEl.appendChild(dislikesEl);
 
-rootEl.appendChild(photoEl); // пост с рисунком
+root1El.appendChild(photoEl); // пост с рисунком конец
 
 const videoBodyEl = document.createElement('div');
 videoBodyEl.className = 'card';
@@ -104,4 +113,26 @@ vdislikesEl.onclick = function () {
 };
 videoButtEl.appendChild(vdislikesEl);
 
-rootEl.appendChild(videoBodyEl);
+root2El.appendChild(videoBodyEl);
+
+const audioEl = document.createElement('div');
+audioEl.className = "card";
+
+const audioIconEl = document.createElement('img')
+audioIconEl.className = 'card-img-top';
+audioIconEl.src = audio.iconUrl;
+audioEl.appendChild(audioIconEl);
+
+const audioPEl = document.createElement('audio');
+audioPEl.className = 'Audio';
+audioPEl.src = audio.sourceUrl;
+audioPEl.controls = true;
+
+
+audioEl.appendChild(audioPEl);
+
+const audioContentEl = document.createElement('p');
+audioContentEl.textContent = audio.content;
+audioEl.appendChild(audioContentEl);
+
+root3El.appendChild(audioEl);
